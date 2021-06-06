@@ -7,7 +7,7 @@ var board = new Array(),
 
 
 $(document).ready(function() {
-	prepareForMobile(); 
+	prepareForMobile();
 	//初始化
 	init();
 });
@@ -204,7 +204,7 @@ document.addEventListener('touchend', function(event) {
 			};
 		}
 	}
-	//move in y 
+	//move in y
 	else {
 		if (deltaY > 0) {
 			//move down
@@ -225,7 +225,11 @@ document.addEventListener('touchend', function(event) {
 
 function isGameOver() {
 	if (noSpace(board) && noMove(board)) {
-		alert('Game Over!');
+		if (score > 4096) {
+			alert('笛笛酱真棒!');
+		} else {
+			alert('笛笛酱加油!');
+		}
 	};
 }
 
