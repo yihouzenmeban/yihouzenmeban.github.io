@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            background: #121212;
+            align-items: center;
+            height: 100vh;
+        }
+        .content {
+            display: flex;
+            width: 100vw;
+            height: 100vw;
+            flex-wrap: wrap;
+            margin: auto;
+        }
+        .box {
+            box-sizing: border-box;
+            width: 20vw;
+            height: 20vw;
+            border: 1px solid #fff;
+        }
+        .green {
+            background: #efdc05;
+        }
+        .blue {
+            background: #30A9DE;
+        }
+        .error {
+            background: #E53A40;
+        }
+        .other{
+            background: #2e294e;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="content">
+        <div class="box" v-for="(item, index) in items" :class="getClass(item)">
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                items: shuffle(Array.from(new Array(25).keys())),
+            },
+            methods: {
+                getClass(item) {
+                    if (item < 8) {
+                        return 'green';
+                    } else if (item < 16) {
+                        return 'blue';
+                    } else if (item === 24) {
+                        return 'error';
+                    } else {
+                        return 'other';
+                    }
+                }
+            }
+        })
+
+        function shuffle(arr){
+            let n = arr.length, random;
+            while(0!=n){
+                random =  (Math.random() * n--) >>> 0; // 无符号右移位运算符向下取整
+                [arr[n], arr[random]] = [arr[random], arr[n]] // ES6的结构赋值实现变量互换
+            }
+            return arr;
+        }
+    </script>
+</body>
+</html>
